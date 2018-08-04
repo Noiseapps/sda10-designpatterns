@@ -15,7 +15,7 @@ public class Car {
         private double engine = 1.3;
         private String make;
         private String model;
-        private boolean hasAC;
+        private boolean hasAC = false;
         private boolean manualTransmission;
         private boolean hasRadio;
 
@@ -47,6 +47,7 @@ public class Car {
     public static void main(String[] args) {
         final Car build = new Builder()
                 .withDoorsCount(6)
-                .withEngine(2.8).build();
+//                .withEngine(2.8)
+                .build();
     }
 }
