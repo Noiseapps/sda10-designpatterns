@@ -26,7 +26,7 @@ public class Student implements Observer<ExamResults> {
     }
 
     @Override
-    public void update(ExamResults data) {
+    public void update(Publisher<ExamResults> publisher, ExamResults data) {
         final Double aDouble = data.getResults().get(uuid.toString());
         if (aDouble == null) return;
         if (aDouble > 0.6) {
@@ -34,5 +34,6 @@ public class Student implements Observer<ExamResults> {
         } else {
             System.out.printf("%s: Fail :(\n", uuid.toString());
         }
+        publisher.unregister(this);
     }
 }

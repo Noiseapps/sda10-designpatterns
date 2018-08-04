@@ -7,8 +7,9 @@ import java.util.UUID;
 
 public class Professor implements Publisher<ExamResults> {
 
-    private Set<Observer<ExamResults>> observers = new HashSet<>();
     private final ExamResults results = new ExamResults();
+    private int publishCount = 0;
+    private Set<Observer<ExamResults>> observers = new HashSet<>();
 
     @Override
     public void register(Observer<ExamResults> observer) {
@@ -22,12 +23,17 @@ public class Professor implements Publisher<ExamResults> {
 
     public void addResult(UUID studentId) {
         results.put(studentId.toString(), new Random().nextDouble());
-        publishResults(results);
+
+        if (++publishCount % 5 == 0) {
+            publishResults(results);
+        }
     }
 
     private void publishResults(ExamResults results) {
-        for (Observer<ExamResults> observer : observers) {
-            observer.update(results);
+        for (Observer<ExamResults> observer : new HashSet<>(observers)) {
+            observer.update(this, results);
         }
+        System.out.println();
+        System.out.println();
     }
 }

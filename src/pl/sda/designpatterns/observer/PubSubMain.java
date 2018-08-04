@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PubSubMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Professor professor = new Professor();
         List<Student> students = new ArrayList<>();
 
@@ -18,10 +18,6 @@ public class PubSubMain {
 
         for (Student student : students) {
             professor.addResult(student.getUuid());
-
-            System.out.println();
-            System.out.println();
-            System.out.println();
         }
 
 
