@@ -1,5 +1,8 @@
 package pl.sda.designpatterns.singleton;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class MultiThreadSIngleton {
@@ -7,6 +10,11 @@ public class MultiThreadSIngleton {
     private final String uuid;
 
     private static MultiThreadSIngleton INSTANCE;
+
+
+    private String someString() {
+        return "test";
+    }
 
     public synchronized static MultiThreadSIngleton getInstance() {
         if(INSTANCE == null) {
@@ -24,29 +32,31 @@ public class MultiThreadSIngleton {
         }
     }
 
-    public static void main(String[] args) {
-        Thread threadA = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final MultiThreadSIngleton instance = MultiThreadSIngleton.getInstance();
-                System.out.println(instance.uuid);
-            }
-        });
-        Thread threadB = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final MultiThreadSIngleton instance = MultiThreadSIngleton.getInstance();
-                System.out.println(instance.uuid);
-            }
-        });
-        threadA.start();
-        threadB.start();
+    public static void main(String[] args) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+//        Thread threadA = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                final MultiThreadSIngleton instance = MultiThreadSIngleton.getInstance();
+//                System.out.println(instance.uuid);
+//            }
+//        });
+//        Thread threadB = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                final MultiThreadSIngleton instance = MultiThreadSIngleton.getInstance();
+//                System.out.println(instance.uuid);
+//            }
+//        });
+//        threadA.start();
+//        threadB.start();
 
-//        final MultiThreadSIngleton instance = MultiThreadSIngleton.getInstance();
 //        final MultiThreadSIngleton instance2 = MultiThreadSIngleton.getInstance();
-//        System.out.println(instance.uuid);
 //        System.out.println(instance2.uuid);
 
 
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 }

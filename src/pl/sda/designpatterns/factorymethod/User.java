@@ -8,7 +8,6 @@ public class User {
     private String name;
     private String department;
 
-
     static User from(UserData data) {
         return new User();
     }
