@@ -11,7 +11,7 @@ public class FibonacciMain {
         final FibonacciAlgorithm[] algorithms = {iterative, recursive};
 
         final Calculator calculator = new Calculator();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 80; i < 100; i++) {
             final int i1 = new Random().nextInt(2);
             long start = System.currentTimeMillis();
             calculator.setStrategy(algorithms[i1]);
